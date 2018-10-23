@@ -1,4 +1,3 @@
-// let board;
 let player1 = 'X';
 let player2 = 'O';
 
@@ -9,9 +8,7 @@ start();
 
 function start(){
     document.querySelector(".result").style.display="none";
-    //gives the boxes a number
     board = Array.from(Array(9).keys());
-    //clears each box and adds event listener
     for (var i = 0; i < boxes.length; i++){
         boxes[i].innerText = '';
         boxes[i].style.removeProperty('background-color');
@@ -38,7 +35,6 @@ function turn(boxId, player){
 }
 
 function nextTurn(){
-    //first box thats not empty
     return emptySquare()[0];
 }
 
@@ -56,18 +52,11 @@ function checkWin(board, player){
 
 function gameOver(gameWon){
     for (let index of winCombo[gameWon.index]){
-        document.getElementById(index).style.backgroundColor=
-            gameWon.player === player1 ? "green" : "blue";
+        document.getElementById(index).style.backgroundColor = gameWon.player === player1 ? "green" : "blue";
     }
     for(var i = 0; i < boxes.length; i++){
         boxes[i].removeEventListener('click', filledSquare, false);
     }
-    result(gameWon.player === player1 ? "You Won!" : "You Lost!");
-}
-
-function result(winner){
-    document.querySelector(".result").style.display = "block";
-    document.querySelector(".result.text").innerText = winner;
 }
 
 function tie(){
@@ -76,7 +65,6 @@ function tie(){
             boxes[i].style.backgroundColor = "red";
             boxes[i].removeEventListener('click', filledSquare, false);
         }
-        result("Tie Game!");
         return true;
     }
     return false;
