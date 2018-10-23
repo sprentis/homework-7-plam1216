@@ -1,9 +1,10 @@
-// let board;
 let player1 = 'X';
 let player2 = 'O';
+
 let winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 let boxes = document.querySelectorAll(".box");
+
 start();
 
 function start(){
@@ -39,7 +40,7 @@ function nextSpot(){
 }
 
 function checkWin(board, player){
-    let plays = board.reduce((x,y,index) => (y===player) ? 		x.concat(index) : x, []);
+    let plays = board.reduce((x,y,index) => (y===player) ? 	x.concat(index) : x, []);
     let gameWon = null;
     for (let [index, win] of winningCombos.entries()){
         if (win.every(elem => plays.indexOf(elem)>-1)){
